@@ -1,7 +1,7 @@
 const fs = require('fs');
+const Ora = require('ora');
 const puppeteer = require('puppeteer');
 
-const Loader = require('./spinner');
 const askQuestions = require('./questions');
 const FreeCodeCampPage = require('./selector');
 const createCodeContent = require('./codeContent');
@@ -9,30 +9,27 @@ const createCodeContent = require('./codeContent');
 const deriveFunctionName = (test) => test.substring(0, test.indexOf('('));
 
 // TODO: 
-// 1. add a spinner. (use ola)
-// 2. add : to the end of question.
-// 3. fix descrption indentation.
-// 4. fix function name arguments.
+// 3. fix description indentation.
 
 async function main() {
   const { url, questionNumber } = await askQuestions();
 
-  const Spinner = new Loader();
+  const spinner = Ora('Opening FreeCodeCamp').start();
+
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url);
 
-  Spinner.fetchingChallengeDescription();
   const fromFreeCodeCamp = new FreeCodeCampPage(page);
   const description = await fromFreeCodeCamp.getDescription();
   const tests = await fromFreeCodeCamp.getTests();
+  const { fnNameWithArgs, fnName } = await fromFreeCodeCamp.getFunctionNameDescription();
 
-  Spinner.creatingFile();
-  const fileName = `${questionNumber}.${deriveFunctionName(tests[0])}.js`
+  const fileName = `${questionNumber}.${fnName}.js`
 
-  fs.appendFile(fileName, createCodeContent(url, description, tests), (err) => {
+  fs.appendFile(fileName, createCodeContent(url, description, tests, fnNameWithArgs), (err) => {
     if (err) throw err;
-    Spinner.fileSaved();
+    spinner.succeed('File Saved');
   });
 
   await browser.close();

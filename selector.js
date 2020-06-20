@@ -15,6 +15,17 @@ class FreeCodeCampPage {
       return Array.from(testSuiteNodeList).map(elem => elem.innerText);
     })
   }
+
+  async getFunctionNameDescription() {
+    return await this.page.evaluate(() => {
+      const functionNameText = Array.from(document.getElementsByClassName('view-line'))[1].innerText;
+
+      return {
+        fnNameWithArgs: functionNameText.substring(0, functionNameText.indexOf(')') + 1),
+        fnName: functionNameText.substring(0, functionNameText.indexOf('(')),
+      };
+    });
+  }
 }
 
 module.exports = FreeCodeCampPage;

@@ -4,12 +4,12 @@ const questions = [
   {
     type: 'input',
     name: 'url',
-    message: 'Enter the url',
+    message: 'Enter the url: ',
   },
   {
     type: 'input',
     name: 'questionNumber',
-    message: 'Enter the question number',
+    message: 'Enter the question number: ',
   }
 ];
 

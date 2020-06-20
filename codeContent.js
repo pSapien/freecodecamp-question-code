@@ -30,14 +30,14 @@ function createConsoleLogs(tests) {
   return tests.map(createConsoleLog).join(LINE_BREAK);
 }
 
-function createFunctionName(functionName) {
-  return 'function ' + functionName + ' {' + LINE_BREAK + LINE_BREAK + '}'
+function createFunctionName(fnNameWithArgs) {
+  return 'function ' + fnNameWithArgs + ' {' + LINE_BREAK + LINE_BREAK + '}'
 }
 
-function createCodeContent(url, description, tests) {
+function createCodeContent(url, description, tests, fnNameWithArgs) {
   return createDescription(url, description) 
   + LINE_BREAK 
-  + createFunctionName(deriveFunctionNameFromTest(tests[0]))
+  + createFunctionName(fnNameWithArgs)
   + LINE_BREAK 
   + LINE_BREAK
   + createConsoleLogs(tests);
