@@ -28,6 +28,4 @@ async function main() {
   await browser.close();
 }
 
-main();
-
 module.exports = main;
