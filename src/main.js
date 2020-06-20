@@ -2,15 +2,13 @@ const fs = require('fs');
 const Ora = require('ora');
 const puppeteer = require('puppeteer');
 
-const askQuestions = require('./questions');
-const FreeCodeCampPage = require('./selector');
-const createCodeContent = require('./codeContent');
+const utils = require('./utils');
 
 // TODO: 
 // 3. fix description indentation.
 
 async function main() {
-  const { url, questionNumber } = await askQuestions();
+  const { url, questionNumber } = await utils.askQuestions();
 
   const spinner = Ora('Opening FreeCodeCamp').start();
 
@@ -18,10 +16,9 @@ async function main() {
   const page = await browser.newPage();
   await page.goto(url);
 
-  const fromFreeCodeCamp = new FreeCodeCampPage(page);
-  const info = await fromFreeCodeCamp.getInfo();
+  const info = await page.evaluate(utils.questionInfoSelector);
 
-  fs.appendFile(`${questionNumber}.${info.fnName}.js`, createCodeContent(url, info), (err) => {
+  fs.appendFile(`${questionNumber}.${info.fnName}.js`, utils.createCodeContent(url, info), (err) => {
     if (err) throw err;
     spinner.succeed('File Saved');
   });
