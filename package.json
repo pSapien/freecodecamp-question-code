@@ -5,11 +5,8 @@
   "main": "main.js",
   "author": "Sapien",
   "license": "MIT",
-  "scripts": {
-    "start": "nodemon main.js"
-  },
   "bin": {
-    "fcc": "cli"
+    "fcc": "./src/cli"
   },
   "dependencies": {
     "inquirer": "^7.2.0",
