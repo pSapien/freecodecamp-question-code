@@ -26,6 +26,19 @@ class FreeCodeCampPage {
       };
     });
   }
+
+  async getInfo() {
+    const description = await this.getDescription();
+    const tests = await this.getTests();
+    const { fnNameWithArgs, fnName } = await this.getFunctionNameDescription();
+
+    return {
+      description,
+      tests,
+      fnNameWithArgs,
+      fnName,
+    }
+  }
 }
 
 module.exports = FreeCodeCampPage;

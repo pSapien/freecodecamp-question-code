@@ -6,8 +6,6 @@ const askQuestions = require('./questions');
 const FreeCodeCampPage = require('./selector');
 const createCodeContent = require('./codeContent');
 
-const deriveFunctionName = (test) => test.substring(0, test.indexOf('('));
-
 // TODO: 
 // 3. fix description indentation.
 
@@ -21,13 +19,9 @@ async function main() {
   await page.goto(url);
 
   const fromFreeCodeCamp = new FreeCodeCampPage(page);
-  const description = await fromFreeCodeCamp.getDescription();
-  const tests = await fromFreeCodeCamp.getTests();
-  const { fnNameWithArgs, fnName } = await fromFreeCodeCamp.getFunctionNameDescription();
+  const info = await fromFreeCodeCamp.getInfo();
 
-  const fileName = `${questionNumber}.${fnName}.js`
-
-  fs.appendFile(fileName, createCodeContent(url, description, tests, fnNameWithArgs), (err) => {
+  fs.appendFile(`${questionNumber}.${info.fnName}.js`, createCodeContent(url, info), (err) => {
     if (err) throw err;
     spinner.succeed('File Saved');
   });

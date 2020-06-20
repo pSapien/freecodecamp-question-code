@@ -34,13 +34,13 @@ function createFunctionName(fnNameWithArgs) {
   return 'function ' + fnNameWithArgs + ' {' + LINE_BREAK + LINE_BREAK + '}'
 }
 
-function createCodeContent(url, description, tests, fnNameWithArgs) {
-  return createDescription(url, description) 
+function createCodeContent(url, codeContentInfo) {
+  return createDescription(url, codeContentInfo.description) 
   + LINE_BREAK 
-  + createFunctionName(fnNameWithArgs)
+  + createFunctionName(codeContentInfo.fnNameWithArgs)
   + LINE_BREAK 
   + LINE_BREAK
-  + createConsoleLogs(tests);
+  + createConsoleLogs(codeContentInfo.tests);
 }
 
 module.exports = createCodeContent;
