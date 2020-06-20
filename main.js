@@ -5,12 +5,9 @@ const askQuestions = require('./questions');
 const FreeCodeCampPage = require('./selector');
 const createCodeContent = require('./codeContent');
 
-function deriveFunctionName(test) {
-  const upUntillOpeningBrace = test.indexOf('(');
-  return test.substring(0, upUntillOpeningBrace);
-}
+const deriveFunctionName = (test) => test.substring(0, test.indexOf('('));
 
-(async () => {
+async function main() {
   const { url, questionNumber } = await askQuestions();
 
   const browser = await puppeteer.launch();
@@ -29,5 +26,8 @@ function deriveFunctionName(test) {
   });
 
   await browser.close();
-})();
+}
 
+main();
+
+module.exports = main;

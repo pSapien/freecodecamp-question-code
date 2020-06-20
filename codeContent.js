@@ -27,11 +27,11 @@ function createConsoleLog(test) {
 }
 
 function createConsoleLogs(tests) {
-  return tests.map(createConsoleLog).join('\n');
+  return tests.map(createConsoleLog).join(LINE_BREAK);
 }
 
 function createFunctionName(functionName) {
-  return 'function ' + functionName + ' {' + '\n' + '\n' + '}'
+  return 'function ' + functionName + ' {' + LINE_BREAK + LINE_BREAK + '}'
 }
 
 function createCodeContent(url, description, tests) {
