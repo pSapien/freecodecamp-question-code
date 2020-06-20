@@ -1,7 +1,7 @@
 {
-  "name": "node-freecodecamp-programming-challenges-scraper",
+  "name": "freecodecamp-question-code",
   "version": "1.0.0",
-  "description": "An application that scrapes the programming challenges into our code editor",
+  "description": "A CLI that turns javascript-question from FreeCodeCamp into a javascript file to solve in code editor.",
   "main": "main.js",
   "author": "Sapien",
   "license": "MIT",
