@@ -1,17 +1,32 @@
 {
-  "name": "freecodecamp-question-code",
+  "name": "fcc",
   "version": "1.0.0",
   "description": "A CLI that turns javascript-question from FreeCodeCamp into a javascript file to solve in code editor.",
   "main": "main.js",
   "author": "Sapien",
   "license": "MIT",
   "bin": {
-    "fcc": "./src/cli"
+    "fcc": "src/cli"
   },
   "dependencies": {
     "inquirer": "^7.2.0",
     "nodemon": "^2.0.4",
     "ora": "^4.0.4",
     "puppeteer": "^4.0.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pSapien/freecodecamp-questions-scraper.git"
+  },
+  "keywords": [
+    "freecodecamp"
+  ],
+  "bugs": {
+    "url": "https://github.com/pSapien/freecodecamp-questions-scraper/issues"
+  },
+  "homepage": "https://github.com/pSapien/freecodecamp-questions-scraper#readme"
 }
