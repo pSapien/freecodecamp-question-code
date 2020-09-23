@@ -1,5 +1,5 @@
 {
-  "name": "fcc",
+  "name": "freecodecamp_question_code",
   "version": "1.0.0",
   "description": "A CLI that turns javascript-question from FreeCodeCamp into a javascript file to solve in code editor.",
   "main": "main.js",
